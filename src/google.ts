@@ -122,8 +122,12 @@ export class GoogleSERP {
 
     $(CONFIG.results).each((index, element) => {
       const position = this.serp.organic.length + 1;
-      const url = $(element).prop('href');
+      let url = $(element).prop('href');
 		console.debug("url: " + url);
+		if( url.startsWith('/')){
+			url = 'https://google.com' + url;
+			console.debug("new url: " + url);
+		}
       const domain = utils.getDomain(url);
 		// let parsed_domain;
 		// try {
@@ -132,11 +136,19 @@ export class GoogleSERP {
 		// 		console.error(error);
 		// }
 
-		const parsed_domain = tldParser(url);
+		let parsed_domain;
+		let domain_tld = 'UNKNOWN';
+		let domain_root = 'UNKNOWN';
+		let domain_sub = 'UNKNOWN';
+		try {
+			parsed_domain = tldParser(url);
+		} catch ( error ) {
+			console.error(error);
+		}
+      domain_tld = parsed_domain.tld;
+      domain_root = parsed_domain.domain;
+      domain_sub = parsed_domain.sub;
 
-      const domain_tld = parsed_domain.tld;
-      const domain_root = parsed_domain.domain;
-      const domain_sub = parsed_domain.sub;
       const title = this.elementText(element, 'h3').trim();
       const snippet = this.getSnippet(element).trim();
       const linkType = utils.getLinkType(url);
