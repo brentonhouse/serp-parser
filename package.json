@@ -1,6 +1,6 @@
 {
   "name": "@geek/serp-parser",
-  "version": "1.4.0-2",
+  "version": "1.4.0-3",
   "description": "SERP Parser for Google",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

@@ -117,7 +117,7 @@ export class GoogleMobileSERP {
       const title = this.elementText(element, 'div[role="heading"] div');
       const snippet = this.getSnippet(element);
       const linkType = utils.getLinkType(url);
-		const uri = new URL(url);
+      const uri = new URL(url);
       const url_clean = uri.hostname + uri.pathname;
       const url_displayed = $(element).children('div').text();
       const result: Result = {
@@ -129,9 +129,9 @@ export class GoogleMobileSERP {
         url,
         domain_root,
         domain_sub,
-		  domain_tld,
-		  url_clean,
-		  url_displayed,
+        domain_tld,
+        url_clean,
+        url_displayed,
       };
       this.parseSitelinks(element, result);
       this.serp.organic.push(result);

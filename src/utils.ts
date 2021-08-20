@@ -19,8 +19,8 @@ export const getFirstMatch = (str: string, reg: RegExp): string => {
 
 export const getLinkType = (url: string, base?: string): LinkType => {
   const href = new URL(url, base);
-  if( url.toLowerCase().includes('blog') ){
-	  return LinkType.blog;
+  if (url.toLowerCase().includes('blog')) {
+    return LinkType.blog;
   }
   return href.pathname !== '/' ? LinkType.landing : LinkType.home;
 };

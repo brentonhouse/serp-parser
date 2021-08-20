@@ -123,28 +123,28 @@ export class GoogleSERP {
     $(CONFIG.results).each((index, element) => {
       const position = this.serp.organic.length + 1;
       let url = $(element).prop('href');
-		console.debug("url: " + url);
-		if( url.startsWith('/')){
-			url = 'https://google.com' + url;
-			console.debug("new url: " + url);
-		}
+      console.debug('url: ' + url);
+      if (url.startsWith('/')) {
+        url = 'https://google.com' + url;
+        console.debug('new url: ' + url);
+      }
       const domain = utils.getDomain(url);
-		// let parsed_domain;
-		// try {
-		// 	parsed_domain = tldParser(url, {allowUnknownTLD: true});
-		// } catch (error){
-		// 		console.error(error);
-		// }
+      // let parsed_domain;
+      // try {
+      // 	parsed_domain = tldParser(url, {allowUnknownTLD: true});
+      // } catch (error){
+      // 		console.error(error);
+      // }
 
-		let parsed_domain;
-		let domain_tld = 'UNKNOWN';
-		let domain_root = 'UNKNOWN';
-		let domain_sub = 'UNKNOWN';
-		try {
-			parsed_domain = tldParser(url);
-		} catch ( error ) {
-			console.error(error);
-		}
+      let parsed_domain;
+      let domain_tld = 'UNKNOWN';
+      let domain_root = 'UNKNOWN';
+      let domain_sub = 'UNKNOWN';
+      try {
+        parsed_domain = tldParser(url);
+      } catch (error) {
+        console.error(error);
+      }
       domain_tld = parsed_domain.tld;
       domain_root = parsed_domain.domain;
       domain_sub = parsed_domain.sub;
@@ -152,7 +152,7 @@ export class GoogleSERP {
       const title = this.elementText(element, 'h3').trim();
       const snippet = this.getSnippet(element).trim();
       const linkType = utils.getLinkType(url);
-		const uri = new URL(url);
+      const uri = new URL(url);
       const url_clean = uri.hostname + uri.pathname;
       const url_displayed = $(element).children('div').text();
       const result: Result = {
@@ -164,9 +164,9 @@ export class GoogleSERP {
         url,
         domain_root,
         domain_sub,
-		  domain_tld,
-		  url_clean,
-		  url_displayed,
+        domain_tld,
+        url_clean,
+        url_displayed,
       };
       this.parseSitelinks(element, result);
       this.parseCachedAndSimilarUrls(element, result);
@@ -202,8 +202,8 @@ export class GoogleSERP {
   }
 
   private getSnippet(element: cheerio.Element | cheerio.Node): string {
-	//   console.error(this.$(element));
-	//   console.debug(`🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨`);
+    //   console.error(this.$(element));
+    //   console.debug(`🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨`);
     const text = this.$(element).parent().next().text();
     return text;
   }
