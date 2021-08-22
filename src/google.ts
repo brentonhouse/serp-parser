@@ -141,13 +141,15 @@ export class GoogleSERP {
       let domain_root = 'UNKNOWN';
       let domain_sub = 'UNKNOWN';
       try {
-        parsed_domain = tldParser(url);
+        parsed_domain = tldParser(url, {allowUnknownTLD: true});
+        domain_tld = parsed_domain.tld;
+        domain_root = parsed_domain.domain;
+        domain_sub = parsed_domain.sub;
+
       } catch (error) {
         console.error(error);
       }
-      domain_tld = parsed_domain.tld;
-      domain_root = parsed_domain.domain;
-      domain_sub = parsed_domain.sub;
+
 
       const title = this.elementText(element, 'h3').trim();
       const snippet = this.getSnippet(element).trim();
