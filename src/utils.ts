@@ -19,10 +19,19 @@ export const getFirstMatch = (str: string, reg: RegExp): string => {
 
 export const getLinkType = (url: string, base?: string): LinkType => {
   const href = new URL(url, base);
-  if (url.toLowerCase().includes('blog')) {
-    return LinkType.blog;
+  let linkType = LinkType.landing;
+  if( href.pathname === '/') {
+	linkType = LinkType.home;
   }
-  return href.pathname !== '/' ? LinkType.landing : LinkType.home;
+  else if (url.toLowerCase().includes('blog') || 
+  	   url.toLowerCase().startsWith('https://medium.com/') ||
+  	   url.toLowerCase().startsWith('https://nordicapis.com/') ||
+  	   url.toLowerCase().startsWith('https://dev.to/') 
+  ) {
+	linkType = LinkType.blog;
+  }
+
+  return linkType;
 };
 
 export const getTotalResults = (text: string): number | undefined => {
