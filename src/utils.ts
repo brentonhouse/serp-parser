@@ -1,7 +1,15 @@
 import { LinkType } from './models';
 
 export const getDomain = (url: string, base?: string): string => {
-  const href = new URL(url, base);
+	let href;
+	try {
+  		href = new URL(url, base);		
+	} catch (error){
+		console.error(`🦠  url: ${JSON.stringify(url, null, 2)}`);
+		console.error(`🦠  base: ${JSON.stringify(base, null, 2)}`);
+		throw error;
+	};
+
   return href.hostname;
 };
 

@@ -183,7 +183,12 @@ export class GoogleSERP {
     };
     $(CONFIG.results).each((index, element) => {
       const position = this.serp.organic.length + 1;
-      const url = $(element).prop('href');
+      let url = $(element).prop('href');
+		console.debug('url: ' + url);
+      if (url.startsWith('/')) {
+        url = 'https://google.com' + url;
+        console.debug('new url: ' + url);
+      }
       const domain = utils.getDomain(url);
       const title = this.elementText(element, 'h3');
       const snippet = this.$(element).closest('.g').prev().text();
@@ -557,7 +562,12 @@ export class GoogleSERP {
       .find(CONFIG.ads)
       .each((i, e) => {
         const title = this.elementText(e, CONFIG.title);
-        const url = this.elementHref(e, CONFIG.url);
+        let url = this.elementHref(e, CONFIG.url);
+		  console.debug('url: ' + url);
+		  if (url.startsWith('/')) {
+			 url = 'https://google.com' + url;
+			 console.debug('new url: ' + url);
+		  }
         const domain = utils.getDomain(url);
         const linkType = utils.getLinkType(url);
         const snippet = $(e).find(CONFIG.snippet).text();
