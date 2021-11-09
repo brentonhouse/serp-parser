@@ -564,6 +564,10 @@ export class GoogleSERP {
         const title = this.elementText(e, CONFIG.title);
         let url = this.elementHref(e, CONFIG.url);
 		  console.debug('url: ' + url);
+		  if( !url ){
+			  console.error('skipping null ad url');
+			  return true;
+		  }
 		  if (url.startsWith('/')) {
 			 url = 'https://google.com' + url;
 			 console.debug('new url: ' + url);
