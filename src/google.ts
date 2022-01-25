@@ -123,7 +123,7 @@ export class GoogleSERP {
     $(CONFIG.results).each((index, element) => {
       const position = this.serp.organic.length + 1;
       let url = $(element).prop('href');
-      console.debug('url: ' + url);
+      // console.debug('url: ' + url);
       if (url.startsWith('/')) {
         url = 'https://google.com' + url;
         console.debug('new url: ' + url);
@@ -184,7 +184,7 @@ export class GoogleSERP {
     $(CONFIG.results).each((index, element) => {
       const position = this.serp.organic.length + 1;
       let url = $(element).prop('href');
-		console.debug('url: ' + url);
+		// console.debug('url: ' + url);
       if (url.startsWith('/')) {
         url = 'https://google.com' + url;
         console.debug('new url: ' + url);
@@ -563,7 +563,7 @@ export class GoogleSERP {
       .each((i, e) => {
         const title = this.elementText(e, CONFIG.title);
         let url = this.elementHref(e, CONFIG.url);
-		  console.debug('url: ' + url);
+		//   console.debug('url: ' + url);
 		  if( !url ){
 			  console.error('skipping null ad url');
 			  return true;

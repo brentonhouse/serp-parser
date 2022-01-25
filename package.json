@@ -1,6 +1,6 @@
 {
   "name": "@geek/serp-parser",
-  "version": "1.5.0-0",
+  "version": "1.5.0-1",
   "description": "SERP Parser for Google",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -59,8 +59,8 @@
   },
   "dependencies": {
     "@geek/tld": "^2.0.1-1",
-    "cheerio": "^1.0.0-rc.9",
-    "query-string": "^7.0.0",
-    "tslib": "^2.2.0"
+    "cheerio": "1.0.0-rc.10",
+    "query-string": "^7.1.0",
+    "tslib": "^2.3.1"
   }
 }
